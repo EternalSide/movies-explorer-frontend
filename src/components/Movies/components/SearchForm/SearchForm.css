@@ -1,0 +1,118 @@
+.searchform {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 72px;
+	border-radius: 8px;
+	border: 1.5px solid rgba(170, 170, 170, 0.2);
+	margin-top: 70px;
+}
+.searchform__input {
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: white;
+	padding-left: 25px;
+	font-size: 18px;
+	line-height: 20px;
+}
+.searchform__input::placeholder {
+	color: #8b8b8b;
+	font-size: 18px;
+	line-height: 20px;
+}
+
+.searchform__button {
+	width: 100px;
+	height: 52px;
+	border-radius: 5px;
+	margin-right: 10px;
+	background-color: #4285f4;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.searchform__checkbox-title {
+	font-size: 13px;
+	line-height: 18px;
+}
+
+.searchform__checker-container {
+	margin-top: 27px;
+	margin-bottom: 44px;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+
+.searchform__checkbox {
+	position: relative;
+	display: inline-block;
+	width: 36px;
+	height: 20px;
+}
+
+/* Стили для невидимого чекбокса */
+.searchform__checkbox-input {
+	display: none;
+}
+
+/* Стили для внешнего фона чекбокса */
+.searchform__checkbox .searchform__checkbox-slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc; /* Цвет фона в выключенном состоянии */
+	transition: 0.4s;
+	border-radius: 34px;
+}
+
+/* Стили для ползунка (когда чекбокс включен) */
+.searchform__checkbox input:checked + .searchform__checkbox-slider {
+	background-color: rgba(61, 220, 132, 1); /* Цвет фона включенного чекбокса */
+}
+
+/* Стили для ползунка (положение ползунка) */
+.searchform__checkbox .searchform__checkbox-slider:before {
+	position: absolute;
+	content: "";
+	height: 10px;
+	width: 9px;
+	left: 4px;
+	bottom: 5px;
+	background-color: white; /* Цвет ползунка */
+	transition: 0.4s;
+	border-radius: 50%;
+}
+
+/* Стили для ползунка (когда чекбокс включен) */
+.searchform__checkbox input:checked + .searchform__checkbox-slider:before {
+	transform: translateX(19px); /* Сдвиг ползунка вправо */
+}
+
+@media screen and (max-width: 420px) {
+	.searchform {
+		height: 56px;
+	}
+	.searchform__input {
+		font-size: 16px;
+		padding-left: 12px;
+	}
+	.searchform__input::placeholder {
+		font-size: 16px;
+	}
+	.searchform__button {
+		width: 80px;
+		height: 44px;
+		margin-right: 6px;
+	}
+	.searchform__checkbox-title {
+		font-size: 11px;
+	}
+}
