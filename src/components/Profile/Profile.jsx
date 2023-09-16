@@ -20,7 +20,7 @@ const Profile = () => {
 						</div>
 					</div>
 
-					<div class='profile__buttons'>
+					<div className='profile__buttons'>
 						<button
 							type='button'
 							className='profile__button profile__button_edit'

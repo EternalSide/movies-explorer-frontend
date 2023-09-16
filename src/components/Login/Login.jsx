@@ -3,23 +3,23 @@ import Logo from "images/logo.svg";
 import "./Login.css";
 const Login = () => {
 	return (
-		<section class='login'>
-			<div class='login__container'>
+		<section className='login'>
+			<div className='login__container'>
 				<Link to='/'>
 					<img
-						class='login__logo'
+						className='login__logo'
 						src={Logo}
 						alt='Лого сайта'
 					/>
 				</Link>
-				<h1 class='login__title'>Рады видеть!</h1>
+				<h1 className='login__title'>Рады видеть!</h1>
 				<form
-					class='login__form'
+					className='login__form'
 					action='#'
 				>
-					<div class='login__block'>
+					<div className='login__block'>
 						<label
-							class='login__label'
+							className='login__label'
 							htmlFor='email'
 						>
 							E-mail
@@ -27,14 +27,14 @@ const Login = () => {
 						<input
 							required
 							placeholder='Введите Email'
-							class='login__input'
+							className='login__input'
 							type='email'
 							id='email'
 						/>
 					</div>
-					<div class='login__block login__block_last'>
+					<div className='login__block login__block_last'>
 						<label
-							class='login__label'
+							className='login__label'
 							htmlFor='password'
 						>
 							Пароль
@@ -44,23 +44,23 @@ const Login = () => {
 							minLength={4}
 							maxLength={30}
 							placeholder='Введите пароль'
-							class='login__input'
+							className='login__input'
 							type='password'
 							id='password'
 						/>
 					</div>
 					<button
-						class='login__button'
+						className='login__button'
 						type='submit'
 					>
 						Войти
 					</button>
 				</form>
-				<p class='login__question'>
+				<p className='login__question'>
 					Ещё не зарегистрированы?{" "}
 					<Link
 						to='/sign-up'
-						class='login__question-link'
+						className='login__question-link'
 					>
 						Регистрация
 					</Link>
