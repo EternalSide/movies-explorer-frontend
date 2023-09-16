@@ -10,7 +10,7 @@ const Footer = () => {
 					<ul className='footer__list'>
 						<li className='footer__list-item'>
 							<a
-								className='footer__list__link'
+								className='footer__list-link'
 								href='https://practicum.yandex.ru/'
 								target='_blank'
 								rel='noreferrer'
@@ -20,7 +20,7 @@ const Footer = () => {
 						</li>
 						<li className='footer__list-item'>
 							<a
-								className='footer__list__link'
+								className='footer__list-link'
 								href='https://github.com/'
 								target='_blank'
 								rel='noreferrer'

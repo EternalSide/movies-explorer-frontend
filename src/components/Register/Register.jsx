@@ -3,7 +3,7 @@ import Logo from "images/logo.svg";
 import "./Register.css";
 const Register = () => {
 	return (
-		<div className='register'>
+		<section className='register'>
 			<div className='register__container'>
 				<Link to='/'>
 					<img
@@ -25,6 +25,10 @@ const Register = () => {
 							Имя
 						</label>
 						<input
+							minLength={4}
+							maxLength={30}
+							required
+							placeholder='Введите Имя'
 							className='register__input'
 							id='name'
 							type='text'
@@ -34,16 +38,18 @@ const Register = () => {
 						<label
 							className='register__label'
 							htmlFor='email'
-							type='text'
 						>
 							E-mail
 						</label>
 						<input
+							required
+							placeholder='Введите Email'
 							className='register__input'
 							id='email'
+							type='email'
 						/>
 					</div>
-					<div className='register__block'>
+					<div className='register__block register__block_last'>
 						<label
 							className='register__label'
 							htmlFor='password'
@@ -51,9 +57,13 @@ const Register = () => {
 							Пароль
 						</label>
 						<input
+							required
+							placeholder='Ваш Пароль'
 							className='register__input'
 							type='password'
 							id='password'
+							minLength={4}
+							maxLength={30}
 						/>
 					</div>
 					<button
@@ -67,13 +77,13 @@ const Register = () => {
 					Уже зарегистрированы?{" "}
 					<Link
 						to='/sign-in'
-						className='register__question_link'
+						className='register__question-link'
 					>
 						Войти
 					</Link>
 				</p>
 			</div>
-		</div>
+		</section>
 	);
 };
 export default Register;

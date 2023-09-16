@@ -72,6 +72,10 @@
 	font-weight: 500;
 }
 
+.profile__button:hover {
+	opacity: 0.9;
+	transition: 0.3s;
+}
 @media screen and (max-width: 768px) {
 	.profile__name {
 		margin-top: 236px;

@@ -32,7 +32,7 @@
 	flex-direction: column;
 	margin-bottom: 24px;
 }
-.register__block:last-child {
+.register__block_last {
 	margin-bottom: 0px;
 }
 .register__label {
@@ -70,6 +70,10 @@
 	font-size: 14px;
 	font-weight: 500;
 }
+.register__button:hover {
+	opacity: 0.85;
+	transition: 0.3s;
+}
 
 .register__question {
 	margin-top: 16px;
@@ -81,10 +85,15 @@
 	line-height: normal;
 }
 
-.register__question_link {
+.register__question-link {
 	color: #4285f4;
 	text-decoration: none;
 }
+.register__question-link:hover {
+	opacity: 0.9;
+	transition: 0.3s;
+}
+
 @media screen and (max-width: 768px) {
 	.register {
 		padding-top: 232px;

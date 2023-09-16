@@ -47,7 +47,7 @@
 }
 
 .port__link_last {
-	border: none;
+	border-bottom: none !important;
 	padding-bottom: 0px;
 }
 

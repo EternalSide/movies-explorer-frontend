@@ -11,6 +11,6 @@
 }
 @media screen and (max-width: 420px) {
 	.movies__container {
-		padding: 0 14px;
+		padding: 0 10px;
 	}
 }

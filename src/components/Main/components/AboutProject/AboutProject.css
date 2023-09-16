@@ -117,8 +117,8 @@
 	.about__info {
 		flex-direction: column;
 		margin-top: 60px;
-		align-items: flex-start;
-		text-align: left;
+		align-items: center;
+		text-align: center;
 		gap: 56px;
 	}
 	.about__subtitle {
@@ -129,5 +129,11 @@
 	}
 	.about__progress-green {
 		font-size: 11px;
+	}
+}
+@media screen and (max-width: 320px) {
+	.about__info {
+		align-items: flex-start;
+		text-align: left;
 	}
 }

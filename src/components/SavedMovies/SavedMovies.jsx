@@ -4,11 +4,12 @@ import Header from "components/Header/Header";
 import SearchForm from "components/Movies/components/SearchForm/SearchForm";
 import { faker } from "@faker-js/faker";
 import { Footer } from "components/Main";
+
 const SavedMovies = () => {
-	const fakeMovies = Array.from({ length: 9 }, (_, index) => ({
+	const fakeMovies = Array.from({ length: 8 }, (_, index) => ({
 		id: index + 1,
 		title: faker.music.songName(),
-		image: faker.image.url(),
+		image: faker.image.avatar(),
 	}));
 	return (
 		<>

@@ -9,7 +9,7 @@ const Movies = () => {
 	const fakeMovies = Array.from({ length: 12 }, (_, index) => ({
 		id: index + 1,
 		title: faker.music.songName(),
-		image: faker.image.url(),
+		image: faker.image.avatar(),
 		saved: index % 2 === 1 ? true : false,
 	}));
 	return (

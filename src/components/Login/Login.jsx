@@ -3,64 +3,70 @@ import Logo from "images/logo.svg";
 import "./Login.css";
 const Login = () => {
 	return (
-		<div className='login'>
-			<div className='login__container'>
+		<section class='login'>
+			<div class='login__container'>
 				<Link to='/'>
 					<img
-						className='login__logo'
+						class='login__logo'
 						src={Logo}
 						alt='Лого сайта'
 					/>
 				</Link>
-				<h1 className='login__title'>Рады видеть!</h1>
+				<h1 class='login__title'>Рады видеть!</h1>
 				<form
-					className='login__form'
+					class='login__form'
 					action='#'
 				>
-					<div className='login__block'>
+					<div class='login__block'>
 						<label
-							className='login__label'
+							class='login__label'
 							htmlFor='email'
 						>
 							E-mail
 						</label>
 						<input
-							className='login__input'
-							type='text'
+							required
+							placeholder='Введите Email'
+							class='login__input'
+							type='email'
 							id='email'
 						/>
 					</div>
-					<div className='login__block'>
+					<div class='login__block login__block_last'>
 						<label
-							className='login__label'
+							class='login__label'
 							htmlFor='password'
 						>
 							Пароль
 						</label>
 						<input
-							className='login__input'
+							required
+							minLength={4}
+							maxLength={30}
+							placeholder='Введите пароль'
+							class='login__input'
 							type='password'
 							id='password'
 						/>
 					</div>
 					<button
-						className='login__button'
+						class='login__button'
 						type='submit'
 					>
 						Войти
 					</button>
 				</form>
-				<p className='login__question'>
+				<p class='login__question'>
 					Ещё не зарегистрированы?{" "}
 					<Link
 						to='/sign-up'
-						className='login__question_link'
+						class='login__question-link'
 					>
 						Регистрация
 					</Link>
 				</p>
 			</div>
-		</div>
+		</section>
 	);
 };
 export default Login;

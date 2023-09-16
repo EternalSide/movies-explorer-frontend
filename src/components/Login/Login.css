@@ -34,7 +34,7 @@
 	margin-bottom: 24px;
 }
 
-.login__block:last-child {
+.login__block_last {
 	margin-bottom: 0px;
 }
 .login__label {
@@ -70,6 +70,11 @@
 	font-weight: 500;
 }
 
+.login__button:hover {
+	opacity: 0.85;
+	transition: 0.3s;
+}
+
 .login__question {
 	margin-top: 16px;
 	text-align: center;
@@ -80,9 +85,13 @@
 	line-height: normal;
 }
 
-.login__question_link {
+.login__question-link {
 	color: #4285f4;
 	text-decoration: none;
+}
+.login__question-link:hover {
+	opacity: 0.9;
+	transition: 0.3s;
 }
 
 @media screen and (max-width: 768px) {

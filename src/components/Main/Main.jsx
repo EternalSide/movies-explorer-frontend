@@ -3,8 +3,8 @@ const Main = () => {
 	return (
 		<>
 			<Header />
-			<Promo />
 			<main>
+				<Promo />
 				<AboutProject />
 				<Techs />
 				<AboutMe />

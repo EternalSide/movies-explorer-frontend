@@ -21,6 +21,7 @@ const Portfolio = () => {
 				<ul className='port__list'>
 					{links.map((link) => {
 						const lastLink = link.label === "Одностраничное приложение";
+
 						return (
 							<li key={link.href}>
 								<a

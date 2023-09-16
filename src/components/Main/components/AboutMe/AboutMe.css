@@ -16,6 +16,7 @@
 	height: 327px;
 	object-fit: cover;
 	border-radius: 10px;
+	object-position: center;
 }
 
 .aboutme__name {
@@ -78,10 +79,13 @@
 @media screen and (max-width: 754px) {
 	.aboutme__container {
 		flex-direction: column-reverse;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
+		align-items: flex-start;
+		text-align: left;
 		gap: 40px;
+	}
+	.aboutme__image {
+		width: 292px;
+		margin: 0 auto;
 	}
 }
 @media screen and (max-width: 420px) {
@@ -93,7 +97,7 @@
 		text-align: left;
 	}
 	.aboutme__image {
-		width: 100%;
+		width: 292px;
 		height: 352px;
 	}
 	.aboutme__link {
@@ -108,5 +112,6 @@
 	}
 	.aboutme__bio {
 		margin-top: 20px;
+		font-size: 11px;
 	}
 }

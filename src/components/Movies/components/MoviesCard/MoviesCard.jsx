@@ -10,7 +10,7 @@ const MoviesCard = ({ title, image, isMovieSaved, isSavedPage }) => {
 			<img
 				className='movie__poster'
 				src={image}
-				alt='Постер к фильму'
+				alt={title}
 			/>
 			{isSavedPage ? (
 				<button

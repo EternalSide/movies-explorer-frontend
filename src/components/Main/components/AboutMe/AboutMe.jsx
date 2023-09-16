@@ -23,13 +23,12 @@ const AboutMe = () => {
 						Github
 					</a>
 				</div>
-				<div className='aboutme__image-container'>
-					<img
-						className='aboutme__image'
-						src={myPicture}
-						alt='Мое фото'
-					/>
-				</div>
+
+				<img
+					className='aboutme__image'
+					src={myPicture}
+					alt='Мое фото'
+				/>
 			</div>
 		</section>
 	);

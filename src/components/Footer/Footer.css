@@ -40,11 +40,11 @@
 	font-weight: 400;
 }
 
-.footer__list__link {
+.footer__list-link {
 	color: white;
 	text-decoration: none;
 }
-.footer__list__link:hover {
+.footer__list-link:hover {
 	opacity: 0.9;
 	transition: 0.3;
 	text-decoration: underline;
@@ -59,7 +59,6 @@
 	.footer {
 		padding-left: 10px;
 		padding-right: 10px;
-		padding-top: 249px;
 	}
 	.footer__bottom {
 		flex-direction: column-reverse;

@@ -1,8 +1,10 @@
 import "./BlockTitle.css";
 const BlockTitle = ({ title }) => {
+	const techSection = title === "Технологии";
+
 	return (
-		<div className='blocktitle__heading'>
-			<h3 className='blocktitle__title'>{title}</h3>
+		<div className='blocktitle'>
+			<h3 className={`blocktitle__title ${techSection && "blocktitle__title_tech"}`}>{title}</h3>
 		</div>
 	);
 };

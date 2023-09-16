@@ -140,4 +140,15 @@
 	.header__container {
 		padding: 18px 14px;
 	}
+	.header__login-link {
+		width: 54px;
+		height: 26px;
+		font-size: 10px;
+	}
+	.header__login-link {
+		font-size: 10px;
+	}
+	.header__auth {
+		gap: 14px;
+	}
 }

@@ -35,6 +35,7 @@
 	display: flex;
 	gap: 10px;
 	margin-top: 100px;
+	flex-wrap: wrap;
 	justify-content: center;
 }
 
@@ -50,6 +51,12 @@
 	color: #fff;
 }
 
+.testflex {
+	display: flex;
+	justify-content: center;
+	width: fit-content;
+	margin: 0 auto;
+}
 @media screen and (max-width: 1150px) {
 	.techs__container {
 		padding: 90px 50px;
@@ -76,9 +83,7 @@
 		padding-bottom: 70px;
 	}
 	.techs__list {
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0 50px;
+		/* padding: 0 50px; */
 		margin-top: 50px;
 	}
 	.techs__heading {
@@ -90,5 +95,21 @@
 	}
 	.techs__title {
 		font-size: 30px;
+	}
+}
+@media screen and (max-width: 420px) {
+	.techs {
+		background-color: transparent;
+	}
+	.techs__list {
+		/* padding: 0 50px; */
+		max-width: 178px;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		justify-content: flex-start;
+	}
+	.techs__list-item {
+		width: 84px;
 	}
 }

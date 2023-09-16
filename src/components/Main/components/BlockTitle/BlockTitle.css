@@ -10,4 +10,7 @@
 	.blocktitle__title {
 		font-size: 18px;
 	}
+	.blocktitle__title_tech {
+		border-color: black;
+	}
 }
