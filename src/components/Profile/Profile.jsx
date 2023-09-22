@@ -8,12 +8,13 @@ import CurrentUserContext from "contexts/CurrentUserContext";
 
 import { clearUserData } from "utils/clearUserData";
 import { emailPattern } from "utils/regex";
+import ProfileSuccess from "./components/ProfileSuccess";
 
 const Profile = ({ changeUserInfo }) => {
 	const navigate = useNavigate();
 	const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 	const [editProfile, setEditProfile] = useState(false);
-
+	const [isPopupOpen, setIsPopupOpen] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -35,8 +36,11 @@ const Profile = ({ changeUserInfo }) => {
 	const formSubmit = async (values) => {
 		try {
 			const updatedInfo = await changeUserInfo({ name: values.name, email: values.email });
-
 			if (updatedInfo) {
+				setIsPopupOpen(true);
+				setTimeout(() => {
+					setIsPopupOpen(false);
+				}, 1500);
 				setCurrentUser({ ...updatedInfo });
 				setEditProfile(false);
 				reset();
@@ -58,6 +62,10 @@ const Profile = ({ changeUserInfo }) => {
 	};
 	return (
 		<>
+			<ProfileSuccess
+				isPopupOpen={isPopupOpen}
+				setIsPopupOpen={setIsPopupOpen}
+			/>
 			<Header />
 			<section className='profile'>
 				<div className='profile__container'>

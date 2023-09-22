@@ -5,22 +5,30 @@ import Preloader from "../Preloader/Preloader";
 import useResize from "hooks/useResize";
 import useLoad from "hooks/useLoad";
 import useCards from "hooks/useCards";
+import { useEffect, useState } from "react";
 
 const MoviesCardList = ({ data, deleteMovie, saveMovie, savedMovies, isLoading, serverError }) => {
 	// Ошибки, не найдено, Загрузка
-	const zeroResults = data?.length === 0 && !isLoading && !serverError;
+	const isFirstSearch = !localStorage.getItem("searchResults");
+	const zeroResults = data?.length === 0 && !isFirstSearch && !isLoading && !serverError;
 	const beforeSearch = zeroResults || isLoading || serverError;
 
 	// Отрисовка в зависимости от ширины
-	const { windowWidth, mobileWidth } = useResize();
+	const { allWidth, mediumWidth, mobileWidth, windowWidth } = useResize();
 
-	const dataLengthToShowButton = mobileWidth ? data?.length >= 5 : data?.length >= 12;
+	const [dataLengthToShowButton, setDataLengthToShowButton] = useState(0);
+
+	useEffect(() => {
+		if (mobileWidth) return setDataLengthToShowButton(5);
+		if (mediumWidth) return setDataLengthToShowButton(8);
+		if (allWidth) return setDataLengthToShowButton(12);
+	}, [data]);
 
 	//Сколько фильмов подгружать при нажатии на кнопку
-	const { numCardsToLoad } = useLoad({ windowWidth, mobileWidth });
+	const { numCardsToLoad } = useLoad({ mobileWidth, mediumWidth, allWidth, windowWidth });
 
 	// Обновление массива с фильмами
-	const { loadMoreCards, cards, arrayIndex } = useCards({ data, mobileWidth, numCardsToLoad });
+	const { loadMoreCards, cards, arrayIndex } = useCards({ data, allWidth, mediumWidth, mobileWidth, numCardsToLoad });
 	const cardsEnded = arrayIndex < data?.length;
 
 	if (beforeSearch)
@@ -43,7 +51,7 @@ const MoviesCardList = ({ data, deleteMovie, saveMovie, savedMovies, isLoading, 
 							const isMovieSaved = savedMovies?.some((item) => item.movieId === movie.id);
 							return (
 								<MoviesCard
-									key={movie.nameEN}
+									key={movie.id}
 									data={movie}
 									isMovieSaved={isMovieSaved}
 									isSavedPage={false}
@@ -59,7 +67,7 @@ const MoviesCardList = ({ data, deleteMovie, saveMovie, savedMovies, isLoading, 
 							const isMovieSaved = savedMovies?.some((item) => item.movieId === movie.id);
 							return (
 								<MoviesCard
-									key={movie.nameEN}
+									key={movie.id}
 									data={movie}
 									isMovieSaved={isMovieSaved}
 									isSavedPage={false}

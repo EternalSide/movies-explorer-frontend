@@ -5,7 +5,7 @@ import MoviesCardList from "./components/MoviesCardList/MoviesCardList";
 import SearchForm from "./components/SearchForm/SearchForm";
 import { useState } from "react";
 
-const Movies = ({ allMovies, searchMovies, setSearchMovies, saveMovie, savedMovies, deleteMovie }) => {
+const Movies = ({ allMovies, setAllMovies, searchMovies, setSearchMovies, saveMovie, savedMovies, deleteMovie }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [serverError, setServerError] = useState(null);
 
@@ -15,6 +15,7 @@ const Movies = ({ allMovies, searchMovies, setSearchMovies, saveMovie, savedMovi
 			<main className='movies__container'>
 				<SearchForm
 					allMovies={allMovies}
+					setAllMovies={setAllMovies}
 					searchMovies={searchMovies}
 					setSearchMovies={setSearchMovies}
 					setIsLoading={setIsLoading}

@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { getSearchResultsCheckedsSaved, getSearchResultsSaved } from "utils/getSearchResults";
 
-const SavedMoviesForm = ({ searchData, setSavedMoviesSearch }) => {
-	const [isChecked, setIsChecked] = useState(Boolean(localStorage.getItem("checkedOnSaved")) || false);
+const SavedMoviesForm = ({ searchData, savedMoviesSearch, setSavedMoviesSearch }) => {
+	const [isChecked, setIsChecked] = useState(false);
 
 	const {
 		register,
@@ -17,9 +17,11 @@ const SavedMoviesForm = ({ searchData, setSavedMoviesSearch }) => {
 
 	const checkHandler = () => {
 		setIsChecked(!isChecked);
+		console.log(isChecked);
 		getSearchResultsCheckedsSaved({
 			isChecked: !isChecked,
 			searchData: searchData,
+			savedMoviesSearch: savedMoviesSearch,
 			setResults: setSavedMoviesSearch,
 		});
 	};

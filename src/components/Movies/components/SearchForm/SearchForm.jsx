@@ -1,10 +1,10 @@
 import "./SearchForm.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getSearchResults, getSearchResultsChecked } from "utils/getSearchResults";
+import { getSearchResults, getSearchResultsChecked, getSearchResultsFirst } from "utils/getSearchResults";
 
-const SearchForm = ({ searchMovies, allMovies, setSearchMovies, setIsLoading, setServerError }) => {
+const SearchForm = ({ searchMovies, allMovies, setAllMovies, setSearchMovies, setIsLoading, setServerError }) => {
 	const [isChecked, setIsChecked] = useState(Boolean(localStorage.getItem("checked")) || false);
 	const lastSearchValue = localStorage.getItem("lastSearchValue");
 
@@ -22,25 +22,34 @@ const SearchForm = ({ searchMovies, allMovies, setSearchMovies, setIsLoading, se
 	const checkHandler = () => {
 		localStorage.getItem("checked") ? localStorage.removeItem("checked") : localStorage.setItem("checked", true);
 		setIsChecked(!isChecked);
-
-		if (searchMovies?.length >= 1) {
-			getSearchResultsChecked({
-				isChecked: !isChecked,
-				setResults: setSearchMovies,
-			});
-		}
+		getSearchResultsChecked({
+			isChecked: !isChecked,
+			setResults: setSearchMovies,
+		});
 	};
 
+	const [isFirstSearch, setIsFirstSearch] = useState(allMovies.length === 0);
+
 	const onSearchSubmit = (values) => {
-		getSearchResults({
-			isChecked: isChecked,
-			moviesPage: true,
-			searchData: allMovies,
-			setIsLoading: setIsLoading,
-			setServerError: setServerError,
-			setResults: setSearchMovies,
-			values: values,
-		});
+		if (isFirstSearch) {
+			getSearchResultsFirst({
+				isChecked: isChecked,
+				searchData: allMovies,
+				setSearchData: setAllMovies,
+				setIsLoading: setIsLoading,
+				setServerError: setServerError,
+				setResults: setSearchMovies,
+				values: values,
+				setIsFirstSearch: setIsFirstSearch,
+			});
+		} else {
+			getSearchResults({
+				isChecked: isChecked,
+				searchData: allMovies,
+				setResults: setSearchMovies,
+				values: values,
+			});
+		}
 	};
 
 	return (

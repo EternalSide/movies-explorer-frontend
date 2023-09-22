@@ -44,9 +44,9 @@ const App = () => {
 							...user,
 						});
 
-						const [savedMoviesData, allMoviesData] = await Promise.all([api.getSavedMovies(), getAllMovies()]);
-						setSavedMovies(savedMoviesData);
-						setAllMovies(allMoviesData);
+						const savedMoviesData = await api.getSavedMovies();
+
+						setSavedMovies(savedMoviesData.reverse());
 					}
 				} catch (error) {
 					console.log("С токеном что-то не так,", error);
@@ -70,6 +70,7 @@ const App = () => {
 			if (deletedMovie) {
 				const updatedSavedMovies = [...savedMovies.filter((item) => item.movieId !== movieId)];
 				setSavedMovies(updatedSavedMovies);
+				setSavedMoviesSearch([...savedMoviesSearch.filter((item) => item.movieId !== movieId)]);
 			}
 		} catch (error) {
 			console.log(error);
@@ -128,6 +129,7 @@ const App = () => {
 							<ProtectedRoute>
 								<Movies
 									allMovies={allMovies}
+									setAllMovies={setAllMovies}
 									savedMovies={savedMovies}
 									searchMovies={searchMovies}
 									setSearchMovies={setSearchMovies}

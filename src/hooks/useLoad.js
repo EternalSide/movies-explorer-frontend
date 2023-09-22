@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 
-const useLoad = ({ windowWidth, mobileWidth }) => {
+const useLoad = ({ mobileWidth, mediumWidth, allWidth, windowWidth }) => {
 	const [numCardsToLoad, setNumCardsToLoad] = useState(0);
 	const updateCardCounts = useCallback(() => {
-		if (windowWidth >= 1280) {
+		if (allWidth) {
 			setNumCardsToLoad(3);
-		} else if (windowWidth >= 768) {
+		} else if (mediumWidth) {
 			setNumCardsToLoad(2);
 		} else if (mobileWidth) {
-			setNumCardsToLoad(5);
+			setNumCardsToLoad(2);
 		}
-	}, [windowWidth, setNumCardsToLoad, mobileWidth]);
+	}, [allWidth, mediumWidth, mobileWidth, setNumCardsToLoad]);
 
 	useEffect(() => {
 		updateCardCounts();

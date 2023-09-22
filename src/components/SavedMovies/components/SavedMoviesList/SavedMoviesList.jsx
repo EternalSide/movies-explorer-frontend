@@ -20,31 +20,27 @@ const SavedMoviesList = ({ savedMovies, searchResults, deleteMovie }) => {
 			<div className={`savedMoviesList__container`}>
 				{isUserSearched ? (
 					<>
-						{searchResults?.map((movie) => {
-							return (
-								<MoviesCard
-									key={movie.nameEN || movie.nameRU}
-									data={movie}
-									isMovieSaved={true}
-									isSavedPage={true}
-									deleteMovie={deleteMovie}
-								/>
-							);
-						})}
+						{searchResults?.map((movie) => (
+							<MoviesCard
+								key={movie._id}
+								data={movie}
+								isMovieSaved={true}
+								isSavedPage={true}
+								deleteMovie={deleteMovie}
+							/>
+						))}
 					</>
 				) : (
 					<>
-						{savedMovies?.map((movie) => {
-							return (
-								<MoviesCard
-									key={movie.nameEN}
-									data={movie}
-									isMovieSaved={true}
-									isSavedPage={true}
-									deleteMovie={deleteMovie}
-								/>
-							);
-						})}
+						{savedMovies?.map((movie) => (
+							<MoviesCard
+								key={movie._id}
+								data={movie}
+								isMovieSaved={true}
+								isSavedPage={true}
+								deleteMovie={deleteMovie}
+							/>
+						))}
 					</>
 				)}
 			</div>

@@ -1,97 +1,116 @@
-export const getSearchResults = async ({ values, searchData, setResults, isChecked, setIsLoading, setServerError }) => {
+import { getAllMovies } from "./api/MoviesApi";
+const SERVER_ERROR_MESSAGE =
+	"Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
+
+const handleSearch = (data, value) => {
+	return data.filter((item) => {
+		const matchedResults = item.nameRU.toLowerCase().includes(value) || item.nameEN.toLowerCase().includes(value);
+		if (matchedResults) return item;
+		return null;
+	});
+};
+
+const handleSearchChecked = (data, setResults) => {
+	const checkedResults = data.filter((item) => {
+		if (item.duration <= 40) return item;
+		return null;
+	});
+	setResults(checkedResults);
+	localStorage.setItem("searchResultsShort", JSON.stringify(checkedResults));
+	return checkedResults;
+};
+
+export const getSearchResults = ({ values, searchData, setResults, isChecked }) => {
+	const value = values.value.toLowerCase().trim();
+	localStorage.setItem("lastSearchValue", value);
+
+	const results = handleSearch(searchData, value);
+
+	if (isChecked) return handleSearchChecked(results, setResults);
+
+	setResults(results);
+	localStorage.setItem("searchResults", JSON.stringify(results));
+};
+
+export const getSearchResultsFirst = async ({
+	values,
+	setResults,
+	setSearchData,
+	isChecked,
+	setIsLoading,
+	setServerError,
+	setIsFirstSearch,
+}) => {
 	try {
 		setIsLoading(true);
 		setServerError(null);
 
 		const value = values.value.toLowerCase().trim();
-		// Все найденные фильмы не учитывая чекбокса
-		const results = searchData.filter((item) => {
-			const matchedResults = item.nameRU.toLowerCase().includes(value) || item.nameEN.toLowerCase().includes(value);
-			if (matchedResults) return item;
-			return null;
-		});
+		const allMoviesData = await getAllMovies();
+
+		setSearchData(allMoviesData);
+
+		const results = handleSearch(allMoviesData, value);
 
 		localStorage.setItem("lastSearchValue", value);
 
-		if (isChecked) {
-			const checkedResults = results.filter((item) => {
-				if (item.duration <= 40) return item;
-				return null;
-			});
-			setResults(checkedResults);
-			localStorage.setItem("searchResultsShort", JSON.stringify(checkedResults));
-		} else {
-			setResults(results);
-		}
+		if (isChecked) return handleSearchChecked(results, setResults);
 
+		setResults(results);
 		localStorage.setItem("searchResults", JSON.stringify(results));
+
+		setIsFirstSearch(false);
 	} catch (error) {
-		setServerError(
-			"Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-		);
+		setServerError(SERVER_ERROR_MESSAGE);
 	} finally {
 		setIsLoading(false);
 	}
 };
 
-export const getSearchResultsChecked = async ({ isChecked, setResults }) => {
-	try {
-		// Единное хранилище  которое фильтруется
-		const searchData = JSON.parse(localStorage.getItem("searchResults"));
+export const getSearchResultsSaved = ({ values, searchData, setResults, isChecked }) => {
+	const value = values.value.toLowerCase().trim();
 
-		if (!searchData) return null;
+	const results = searchData.filter((item) => {
+		const matchedResults = item.nameRU.toLowerCase().includes(value) || item.nameEN.toLowerCase().includes(value);
+		if (matchedResults) return item;
+		return null;
+	});
 
-		const results = searchData.filter((item) => {
-			if (isChecked) {
-				if (item.duration <= 40) return item;
-			} else {
-				return item;
-			}
-		});
-
-		setResults(results);
-
-		localStorage.setItem("searchResultsShort", JSON.stringify(results));
-	} catch (error) {
-		console.log(error);
-	}
-};
-
-export const getSearchResultsCheckedsSaved = async ({ searchData, isChecked, setResults }) => {
-	try {
-		const results = searchData.filter((item) => {
-			if (isChecked) {
-				if (item.duration <= 40) return item;
-			} else {
-				return item;
-			}
-		});
-
-		setResults(results);
-	} catch (error) {
-		console.log(error);
-	}
-};
-export const getSearchResultsSaved = async ({ values, searchData, setResults, isChecked }) => {
-	try {
-		const value = values.value.toLowerCase().trim();
-		// Все найденные фильмы не учитывая чекбокса
-		const results = searchData.filter((item) => {
-			const matchedResults = item.nameRU.toLowerCase().includes(value) || item.nameEN.toLowerCase().includes(value);
-			if (matchedResults) return item;
+	if (isChecked) {
+		const checkedResults = results.filter((item) => {
+			if (item.duration <= 40) return item;
 			return null;
 		});
-
-		if (isChecked) {
-			const checkedResults = results.filter((item) => {
-				if (item.duration <= 40) return item;
-				return null;
-			});
-			setResults(checkedResults);
-		} else {
-			setResults(results);
-		}
-	} catch (error) {
-		console.log(error);
+		setResults(checkedResults);
+		localStorage.setItem("savedResults", JSON.stringify(checkedResults));
+	} else {
+		setResults(results);
+		localStorage.setItem("savedResults", JSON.stringify(results));
 	}
+};
+
+// Checkbox
+const handleCheckedResults = (data, isChecked) => {
+	return data.filter((item) => {
+		if (isChecked) {
+			if (item.duration <= 40) return item;
+		} else {
+			return item;
+		}
+	});
+};
+
+export const getSearchResultsChecked = ({ isChecked, setResults }) => {
+	const searchData = JSON.parse(localStorage.getItem("searchResults"));
+	if (!searchData) return null;
+
+	const results = handleCheckedResults(searchData, isChecked);
+	setResults(results);
+
+	localStorage.setItem("searchResultsShort", JSON.stringify(results));
+};
+
+export const getSearchResultsCheckedsSaved = ({ searchData, savedMoviesSearch, isChecked, setResults }) => {
+	const results = handleCheckedResults(searchData, isChecked);
+	setResults(results);
 };

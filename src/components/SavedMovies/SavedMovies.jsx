@@ -11,6 +11,7 @@ const SavedMovies = ({ savedMovies, deleteMovie, savedMoviesSearch, setSavedMovi
 			<main className='savedmovies__container'>
 				<SavedMoviesForm
 					searchData={savedMovies}
+					savedMoviesSearch={savedMoviesSearch}
 					setSavedMoviesSearch={setSavedMoviesSearch}
 				/>
 				<SavedMoviesList

@@ -12,82 +12,74 @@ export default class Api {
 	}
 
 	registerUser = async (data) => {
-		try {
-			const res = await fetch(`${this._baseUrl}/signup`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					name: data.name,
-					email: data.email,
-					password: data.password,
-				}),
-			});
+		const res = await fetch(`${this._baseUrl}/signup`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				name: data.name,
+				email: data.email,
+				password: data.password,
+			}),
+		});
 
-			return this._checkRes(res);
-		} catch (error) {
-			console.error("Произошла ошибка при отправке запроса:", error);
-		}
+		return this._checkRes(res);
 	};
 
 	loginUser = async ({ email, password }) => {
-		try {
-			const res = await fetch(`${this._baseUrl}/signin`, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					email: email,
-					password: password,
-				}),
-			});
+		const res = await fetch(`${this._baseUrl}/signin`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: email,
+				password: password,
+			}),
+		});
 
-			return this._checkRes(res);
-		} catch (error) {
-			console.error("Произошла ошибка при отправке запроса:", error);
-		}
+		return this._checkRes(res);
 	};
 
 	getUserInfo = async (token) => {
-		try {
-			const res = await fetch(`${this._baseUrl}/users/me`, {
-				headers: {
-					"Content-Type": "application/json",
-					"Authorization": `Bearer ${token}`,
-				},
-			});
+		const res = await fetch(`${this._baseUrl}/users/me`, {
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${token}`,
+			},
+		});
 
-			return this._checkRes(res);
-		} catch (error) {
-			console.error("Произошла ошибка при отправке запроса:", error);
-		}
+		return this._checkRes(res);
 	};
 
 	getSavedMovies = async () => {
-		try {
-			const res = await fetch(`${this._baseUrl}/movies`, {
-				headers: this.headers,
-			});
+		const res = await fetch(`${this._baseUrl}/movies`, {
+			headers: this.headers,
+		});
 
-			return this._checkRes(res);
-		} catch (error) {
-			console.error("Произошла ошибка при отправке запроса:", error);
-		}
+		return this._checkRes(res);
+	};
+
+	changeUserInfo = async ({ name, email }) => {
+		const res = await fetch(`${this._baseUrl}/users/me`, {
+			method: "PATCH",
+			headers: this.headers,
+			body: JSON.stringify({
+				name,
+				email,
+			}),
+		});
+		return this._checkRes(res);
 	};
 
 	deleteMovie = async (movieId) => {
-		try {
-			const res = await fetch(`${this._baseUrl}/movies/${movieId}`, {
-				method: "DELETE",
-				headers: this.headers,
-			});
+		const res = await fetch(`${this._baseUrl}/movies/${movieId}`, {
+			method: "DELETE",
+			headers: this.headers,
+		});
 
-			return this._checkRes(res);
-		} catch (error) {
-			console.error("Произошла ошибка при отправке запроса:", error);
-		}
+		return this._checkRes(res);
 	};
 
 	saveMovie = async ({
@@ -103,44 +95,24 @@ export default class Api {
 		nameRU,
 		nameEN,
 	}) => {
-		try {
-			const res = await fetch(`${this._baseUrl}/movies`, {
-				method: "POST",
-				headers: this.headers,
-				body: JSON.stringify({
-					country,
-					director,
-					duration,
-					year,
-					description,
-					image,
-					trailerLink,
-					thumbnail,
-					movieId,
-					nameRU,
-					nameEN,
-				}),
-			});
+		const res = await fetch(`${this._baseUrl}/movies`, {
+			method: "POST",
+			headers: this.headers,
+			body: JSON.stringify({
+				country,
+				director,
+				duration,
+				year,
+				description,
+				image,
+				trailerLink,
+				thumbnail,
+				movieId,
+				nameRU,
+				nameEN,
+			}),
+		});
 
-			return this._checkRes(res);
-		} catch (error) {
-			console.error("Произошла ошибка при отправке запроса:", error);
-		}
-	};
-
-	changeUserInfo = async ({ name, email }) => {
-		try {
-			const res = await fetch(`${this._baseUrl}/users/me`, {
-				method: "PATCH",
-				headers: this.headers,
-				body: JSON.stringify({
-					name,
-					email,
-				}),
-			});
-			return this._checkRes(res);
-		} catch (error) {
-			console.error("Произошла ошибка при отправке запроса:", error);
-		}
+		return this._checkRes(res);
 	};
 }
