@@ -1,25 +1,22 @@
-import MoviesCardList from "components/Movies/components/MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 import Header from "components/Header/Header";
-import SearchForm from "components/Movies/components/SearchForm/SearchForm";
-import { faker } from "@faker-js/faker";
 import { Footer } from "components/Main";
+import SavedMoviesForm from "./components/SavedMoviesForm/SavedMoviesForm";
+import SavedMoviesList from "./components/SavedMoviesList/SavedMoviesList";
 
-const SavedMovies = () => {
-	const fakeMovies = Array.from({ length: 8 }, (_, index) => ({
-		id: index + 1,
-		title: faker.music.songName(),
-		image: faker.image.avatar(),
-	}));
+const SavedMovies = ({ savedMovies, deleteMovie, savedMoviesSearch, setSavedMoviesSearch }) => {
 	return (
 		<>
 			<Header />
 			<main className='savedmovies__container'>
-				<SearchForm />
-				<MoviesCardList
-					data={fakeMovies}
-					isMovieSaved={true}
-					isSavedPage={true}
+				<SavedMoviesForm
+					searchData={savedMovies}
+					setSavedMoviesSearch={setSavedMoviesSearch}
+				/>
+				<SavedMoviesList
+					savedMovies={savedMovies}
+					searchResults={savedMoviesSearch}
+					deleteMovie={deleteMovie}
 				/>
 			</main>
 			<Footer />

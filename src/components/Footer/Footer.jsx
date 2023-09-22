@@ -5,7 +5,7 @@ const Footer = () => {
 			<p className='footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
 			<div className='footer__border' />
 			<div className='footer__bottom'>
-				<p className='footer__date'>© 2020</p>
+				<p className='footer__date'>© 2023</p>
 				<nav>
 					<ul className='footer__list'>
 						<li className='footer__list-item'>

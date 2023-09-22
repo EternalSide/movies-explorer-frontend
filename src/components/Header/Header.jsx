@@ -1,16 +1,19 @@
 import "./Header.css";
 import { Link, useLocation } from "react-router-dom";
+
 import Logo from "images/logo.svg";
 import UserIcon from "images/usericon.svg";
 import MenuIcon from "images/menu.svg";
-import { useState } from "react";
+
+import { useContext, useState } from "react";
 import Navigation from "./components/Navigation/Navigation";
+import CurrentUserContext from "contexts/CurrentUserContext";
 
 const Header = () => {
 	const { pathname } = useLocation();
 	const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const isLandingPage = pathname === "/";
-	const auth = true;
+	const { currentUser } = useContext(CurrentUserContext);
 
 	return (
 		<>
@@ -27,7 +30,7 @@ const Header = () => {
 							alt='Лого сайта'
 						/>
 					</Link>
-					{auth ? (
+					{currentUser !== null ? (
 						<div className='header__user-panel'>
 							<button
 								onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}

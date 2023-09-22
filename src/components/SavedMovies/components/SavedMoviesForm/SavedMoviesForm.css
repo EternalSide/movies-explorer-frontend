@@ -1,7 +1,7 @@
-.searchform {
+.savedform {
 	margin-top: 70px;
 }
-.searchform__container {
+.savedform__container {
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -10,7 +10,7 @@
 	border: 1.5px solid rgba(170, 170, 170, 0.2);
 	transition: border 0.2s;
 }
-.searchform__input {
+.savedform__input {
 	width: 100%;
 	height: 100%;
 	background-color: transparent;
@@ -22,17 +22,16 @@
 	line-height: 20px;
 }
 
-.searchform__container:focus-within {
+.savedform__container:focus-within {
 	border: 1px solid #3498db;
 }
-
-.searchform__input::placeholder {
+.savedform__input::placeholder {
 	color: #8b8b8b;
 	font-size: 18px;
 	line-height: 20px;
 }
 
-.searchform__button {
+.savedform__button {
 	width: 100px;
 	height: 52px;
 	border-radius: 5px;
@@ -41,30 +40,25 @@
 	color: white;
 	border: none;
 	cursor: pointer;
-	margin-left: 5px;
 }
-.searchform__button:disabled {
-	cursor: not-allowed;
-	opacity: 0.75;
-}
-.searchform__button:hover {
+.savedform__button:hover {
 	transition: 0.3s;
 	opacity: 0.85;
 }
 
-.searchform__checkbox-title {
+.savedform__checkbox-title {
 	font-size: 13px;
 	line-height: 18px;
 }
 
-.searchform__checker-container {
+.savedform__checker-container {
 	margin-top: 27px;
 	display: flex;
 	align-items: center;
 	gap: 14px;
 }
 
-.searchform__checkbox {
+.savedform__checkbox {
 	position: relative;
 	display: inline-block;
 	width: 36px;
@@ -72,12 +66,12 @@
 }
 
 /* Стили для невидимого чекбокса */
-.searchform__checkbox-input {
+.savedform__checkbox-input {
 	display: none;
 }
 
 /* Стили для внешнего фона чекбокса */
-.searchform__checkbox .searchform__checkbox-slider {
+.savedform__checkbox .savedform__checkbox-slider {
 	position: absolute;
 	cursor: pointer;
 	top: 0;
@@ -90,12 +84,12 @@
 }
 
 /* Стили для ползунка (когда чекбокс включен) */
-.searchform__checkbox input:checked + .searchform__checkbox-slider {
+.savedform__checkbox input:checked + .savedform__checkbox-slider {
 	background-color: rgba(61, 220, 132, 1); /* Цвет фона включенного чекбокса */
 }
 
 /* Стили для ползунка (положение ползунка) */
-.searchform__checkbox .searchform__checkbox-slider:before {
+.savedform__checkbox .savedform__checkbox-slider:before {
 	position: absolute;
 	content: "";
 	height: 10px;
@@ -108,10 +102,10 @@
 }
 
 /* Стили для ползунка (когда чекбокс включен) */
-.searchform__checkbox input:checked + .searchform__checkbox-slider:before {
+.savedform__checkbox input:checked + .savedform__checkbox-slider:before {
 	transform: translateX(19px); /* Сдвиг ползунка вправо */
 }
-.searchform__error {
+.savedform__error {
 	display: block;
 	margin-top: 5px;
 	font-size: 14px;
@@ -121,22 +115,22 @@
 }
 
 @media screen and (max-width: 420px) {
-	.searchform__container {
+	.savedform__container {
 		height: 56px;
 	}
-	.searchform__input {
+	.savedform__input {
 		font-size: 16px;
 		padding-left: 12px;
 	}
-	.searchform__input::placeholder {
+	.savedform__input::placeholder {
 		font-size: 16px;
 	}
-	.searchform__button {
+	.savedform__button {
 		width: 80px;
 		height: 44px;
 		margin-right: 6px;
 	}
-	.searchform__checkbox-title {
+	.savedform__checkbox-title {
 		font-size: 11px;
 	}
 }

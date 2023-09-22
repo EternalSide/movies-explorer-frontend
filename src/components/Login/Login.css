@@ -57,12 +57,16 @@
 .login__input:focus {
 	border-bottom: 1px solid #4285f4;
 }
+.login__bottom {
+	position: relative;
+	margin-top: 221px;
+	text-align: center;
+}
 .login__button {
 	width: 100%;
 	border-radius: 3px;
 	background-color: #4285f4;
 	height: 45px;
-	margin-top: 221px;
 	border: none;
 	cursor: pointer;
 	color: white;
@@ -73,6 +77,10 @@
 .login__button:hover {
 	opacity: 0.85;
 	transition: 0.3s;
+}
+.login__button:disabled {
+	cursor: not-allowed;
+	opacity: 0.6;
 }
 
 .login__question {
@@ -92,6 +100,21 @@
 .login__question-link:hover {
 	opacity: 0.9;
 	transition: 0.3s;
+}
+.login__error-message {
+	color: #ee3465;
+	margin-top: 6px;
+	font-size: 10px;
+	font-weight: 400;
+}
+.login__error-message-server {
+	font-size: 14px;
+	top: -40px;
+	left: 0;
+	z-index: 10;
+	color: #ee3465;
+	margin-bottom: 20px;
+	height: 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -120,8 +143,10 @@
 	}
 
 	.login__button {
-		margin-top: 309px;
 		font-size: 12px;
+	}
+	.login__bottom {
+		margin-top: 309px;
 	}
 	.login__question {
 		font-size: 12px;

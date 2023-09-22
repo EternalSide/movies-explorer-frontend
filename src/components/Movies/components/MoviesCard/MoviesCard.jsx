@@ -1,19 +1,26 @@
 import "./MoviesCard.css";
+import { convertDuration } from "utils/convertDuration";
 
-const MoviesCard = ({ title, image, isMovieSaved, isSavedPage }) => {
+const MoviesCard = ({ data, isSavedPage, isMovieSaved, deleteMovie, saveMovie }) => {
+	const convertedTime = convertDuration(data.duration);
+
 	return (
-		<div className='movie'>
+		<div
+			className='movie'
+			onClick={() => window.open(data.trailerLink)}
+		>
 			<div className='movie__info'>
-				<h3 className='movie__title'>{title}</h3>
-				<p className='movie__time'>0ч 42м</p>
+				<h3 className='movie__title'>{data.nameRU}</h3>
+				<p className='movie__time'>{convertedTime}</p>
 			</div>
 			<img
 				className='movie__poster'
-				src={image}
-				alt={title}
+				src={isSavedPage ? data.image : `https://api.nomoreparties.co/${data?.image.url}`}
+				alt={data.nameRU || data.nameEN}
 			/>
 			{isSavedPage ? (
 				<button
+					onClick={(e) => deleteMovie(e, data.movieId)}
 					type='button'
 					className='movie__button'
 				>
@@ -23,6 +30,7 @@ const MoviesCard = ({ title, image, isMovieSaved, isSavedPage }) => {
 				<>
 					{isMovieSaved ? (
 						<button
+							onClick={(e) => deleteMovie(e, data.id)}
 							type='button'
 							className='movie__button movie__button_saved'
 						>
@@ -30,6 +38,7 @@ const MoviesCard = ({ title, image, isMovieSaved, isSavedPage }) => {
 						</button>
 					) : (
 						<button
+							onClick={(e) => saveMovie(e, data)}
 							type='button'
 							className='movie__button'
 						>

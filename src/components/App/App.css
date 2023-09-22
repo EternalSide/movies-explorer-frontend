@@ -2,3 +2,12 @@
 	max-width: 1280px;
 	margin: 0 auto;
 }
+
+.app__loading {
+	max-width: 1280px;
+	margin: 0 auto;
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+}

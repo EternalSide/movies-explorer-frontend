@@ -1,23 +1,33 @@
-import Header from "components/Header/Header";
 import "./Movies.css";
+import { Header, Footer } from "components/Main";
+
 import MoviesCardList from "./components/MoviesCardList/MoviesCardList";
 import SearchForm from "./components/SearchForm/SearchForm";
-import { faker } from "@faker-js/faker";
-import { Footer } from "components/Main";
+import { useState } from "react";
 
-const Movies = () => {
-	const fakeMovies = Array.from({ length: 12 }, (_, index) => ({
-		id: index + 1,
-		title: faker.music.songName(),
-		image: faker.image.avatar(),
-		saved: index % 2 === 1 ? true : false,
-	}));
+const Movies = ({ allMovies, searchMovies, setSearchMovies, saveMovie, savedMovies, deleteMovie }) => {
+	const [isLoading, setIsLoading] = useState(false);
+	const [serverError, setServerError] = useState(null);
+
 	return (
 		<>
 			<Header />
 			<main className='movies__container'>
-				<SearchForm />
-				<MoviesCardList data={fakeMovies} />
+				<SearchForm
+					allMovies={allMovies}
+					searchMovies={searchMovies}
+					setSearchMovies={setSearchMovies}
+					setIsLoading={setIsLoading}
+					setServerError={setServerError}
+				/>
+				<MoviesCardList
+					data={searchMovies}
+					savedMovies={savedMovies}
+					isLoading={isLoading}
+					serverError={serverError}
+					deleteMovie={deleteMovie}
+					saveMovie={saveMovie}
+				/>
 			</main>
 			<Footer />
 		</>
