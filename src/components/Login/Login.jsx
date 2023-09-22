@@ -37,7 +37,9 @@ const Login = ({ loginUser, getUserInfo }) => {
 			setDataError("");
 
 			const { email, password } = values;
+
 			const { token } = await loginUser({ email, password });
+
 			const user = await getUserInfo(token);
 
 			if (user) {

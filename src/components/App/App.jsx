@@ -37,7 +37,7 @@ const App = () => {
 		if (token) {
 			const getInitialData = async () => {
 				try {
-					const user = await api.getUserInfo();
+					const user = await api.getUserInfo(token);
 
 					if (user) {
 						setCurrentUser({

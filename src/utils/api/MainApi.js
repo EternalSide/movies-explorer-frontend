@@ -50,10 +50,13 @@ export default class Api {
 		}
 	};
 
-	getUserInfo = async () => {
+	getUserInfo = async (token) => {
 		try {
 			const res = await fetch(`${this._baseUrl}/users/me`, {
-				headers: this.headers,
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${token}`,
+				},
 			});
 
 			return this._checkRes(res);
