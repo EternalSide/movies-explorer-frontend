@@ -1,0 +1,16 @@
+.blocktitle__title {
+	font-size: 22px;
+	font-weight: 400;
+	letter-spacing: -0.88px;
+	border-bottom: 1px solid #dadada;
+	padding-bottom: 23px;
+}
+
+@media screen and (max-width: 420px) {
+	.blocktitle__title {
+		font-size: 18px;
+	}
+	.blocktitle__title_tech {
+		border-color: black;
+	}
+}
